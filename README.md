@@ -13,3 +13,4 @@
 3. לחץ push ל-main.
 4. GitHub Actions יריץ את deploy.sh והמערכת תפרוס אוטומטית.
 5. היכנס ל-http://localhost:8080 או ל-Hugging Face Space שלך.
+test #
