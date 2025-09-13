@@ -1,0 +1,35 @@
+name: Auto Deploy Ima
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build Docker image
+        run: docker build -t ima-app .
+
+      - name: Run deploy script
+        run: chmod +x deploy.sh && ./deploy.sh
+
+      - name: Build UI
+        run: |
+          cd ui
+          npm install
+          npm run build
